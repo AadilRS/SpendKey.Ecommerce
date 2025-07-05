@@ -1,21 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SpendKey.Ecommerce.Api.Data;
-using SpendKey.Ecommerce.Api.DTOs;
+﻿using SpendKey.Ecommerce.Api.DTOs;
+using SpendKey.Ecommerce.Api.Repository;
 
 namespace SpendKey.Ecommerce.Api.Services
 {
     public class CategoryService : ICategoryService
     {
-        private readonly AppDbContext _context;
 
-        public CategoryService(AppDbContext context)
+        private readonly ICategoryRepository _categoryRepository;
+
+        public CategoryService(ICategoryRepository categoryRepository)
         {
-            _context = context;
+            _categoryRepository = categoryRepository;
         }
 
         public async Task<List<CategoryDto>> GetCategoryTreeAsync()
         {
-            var allCategories = await _context.Categories.ToListAsync();
+            var allCategories = await _categoryRepository.ListCategories();
 
             var lookup = allCategories.ToLookup(c => c.Parent_Id);
 
@@ -30,7 +30,7 @@ namespace SpendKey.Ecommerce.Api.Services
                     }).ToList();
             }
 
-            return BuildTree(null); // Start from root categories
+            return BuildTree(null); 
         }
     }
 }

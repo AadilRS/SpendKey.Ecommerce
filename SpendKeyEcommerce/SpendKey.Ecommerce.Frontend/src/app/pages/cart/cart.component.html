@@ -1,0 +1,28 @@
+<form #cartForm="ngForm" (ngSubmit)="onSubmit(cartForm)">
+    <div class="cart-container">
+      <h2>Your Cart</h2>
+  
+      <div class="cart-header">
+        <span>Product</span>
+        <span>Qty</span>
+        <span>Unit Price</span>
+        <span>Total</span>
+      </div>
+  
+      <div class="cart-item" *ngFor="let item of cartItems; let i = index">
+        <span>{{ item.productName }}</span>
+        <span>{{ item.quantity }}</span>
+        <span>₹{{ item.price }}</span>
+        <span>₹{{ item.price * item.quantity }}</span>
+      </div>
+  
+      <div class="cart-summary">
+        <p>Subtotal: ₹{{ subtotal }}</p>
+        <p>Tax (10%): ₹{{ tax }}</p>
+        <p class="total">Total: ₹{{ total }}</p>
+  
+        <button class="checkout-btn" type="submit">Proceed to Checkout</button>
+      </div>
+    </div>
+  </form>
+  

@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="category-tree">
+      <h3>Category Navigation</h3>
+      <ul>
+        <ng-container *ngFor="let category of categories">
+          <ng-template
+            [ngTemplateOutlet]="renderCategory"
+            [ngTemplateOutletContext]="{ $implicit: category }">
+          </ng-template>
+        </ng-container>
+      </ul>
+  
+      <ng-template #renderCategory let-category>
+        <li>
+          <span (click)="loadProducts(category.id)">
+            {{ category.name }}
+          </span>
+  
+          <ul *ngIf="category.children?.length">
+            <ng-container *ngFor="let child of category.children">
+              <ng-template
+                [ngTemplateOutlet]="renderCategory"
+                [ngTemplateOutletContext]="{ $implicit: child }">
+              </ng-template>
+            </ng-container>
+          </ul>
+        </li>
+      </ng-template>
+    </div>
+    <div class="product-listing">
+      <h3 *ngIf="products.length">Product Listing</h3>
+  
+      <div class="products-grid">
+        <div class="product-card" *ngFor="let product of products">
+          <div class="image-placeholder"></div>
+          <h4>{{ product.name }}</h4>
+          <p class="price">₹{{ product.price }}</p>
+          <p class="stock" *ngIf="product.availabilityQty > 0">In Stock: {{ product.availabilityQty }}</p>
+          <button (click)="addToCart(product.id)">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -38,7 +38,7 @@ Instructions to Setup and Run the Project
 Steps:
 1.Install all Prerequites.
 2.Update the connection string in appsettings.json eg: username and password
-  .\SpendKey.Ecommerce\SpendKey.Ecommerce.Api\appsetings.json
+  .\SpendKey.Ecommerce\SpendKeyEcommerce\SpendKey.Ecommerce.Api\appsetings.json
 3.Create Database with name SpendKeyDb and run these scripts to seed data:
   CREATE TABLE Category (
     id INT PRIMARY KEY,
@@ -90,7 +90,7 @@ VALUES
 (1, 3, 1),
 (1, 5, 1);
 
-4.Start the API in http mode: ( Default URL: http://localhost:5066)
+4.Run the backend solution in http Debug mode: ( Default URL: http://localhost:5066)
 
 Use Swagger at:
 http://localhost:5066/swagger
@@ -98,7 +98,7 @@ http://localhost:5066/swagger
 ###################################################################################################
 Frontend Setup
 ###################################################################################################
-1.cd SpendKey.Ecommerce.Frontend
+1.cd .\SpendKey.Ecommerce\SpendKeyEcommerce\SpendKey.Ecommerce.Frontend
 2.npm install
 3.ng serve
 App runs at: http://localhost:4200
